@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: workstack
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: https://github.com/vansh1999/workstack.git
+      targetRevision: main
+      path: helm/workstack
+      helm:
+        valueFiles:
+          - values-gke.yaml
+          - $values/environments/gke/image-tags.yaml
+    - repoURL: https://github.com/vansh1999/workstack-gitops.git
+      targetRevision: main
+      ref: values
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: workstack
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: false
+    syncOptions:
+      - CreateNamespace=false

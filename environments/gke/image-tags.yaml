@@ -1,0 +1,6 @@
+backend:
+  image:
+    tag: v0.1.0
+frontend:
+  image:
+    tag: v0.1.0
