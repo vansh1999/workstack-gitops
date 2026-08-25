@@ -25,3 +25,13 @@ spec:
       selfHeal: false
     syncOptions:
       - CreateNamespace=false
+  ignoreDifferences:
+    # GKE's NEG controller rewrites this annotation into its canonical form
+    # after processing it, so the live value never matches what's declared —
+    # not real drift, just how container-native load balancing reports back.
+    - group: ""
+      kind: Service
+      name: frontend
+      namespace: workstack
+      jsonPointers:
+        - /metadata/annotations/cloud.google.com~1neg
