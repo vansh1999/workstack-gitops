@@ -1,6 +1,6 @@
 backend:
   image:
-    tag: 637539ac63872ac5bb84e769d4b9d01d13f7d88c
+    tag: v0.1.0
 frontend:
   image:
-    tag: 637539ac63872ac5bb84e769d4b9d01d13f7d88c
+    tag: v0.1.0
